@@ -13,8 +13,16 @@ Vaga: Estágio em Desenvolvimento · Candidato: Ricardo Tomasi da Cruz
 ### Instalação e execução
 
 ```bash
-cd backend
+# 1. Clone o repositório
+git clone https://github.com/kituzZ/Desafio-Ponteiras-Rodrigues.git
+
+# 2. Entre na pasta do backend
+cd Desafio-Ponteiras-Rodrigues/backend
+
+# 3. Instale as dependências
 npm install
+
+# 4. Inicie o servidor
 npm start
 ```
 
