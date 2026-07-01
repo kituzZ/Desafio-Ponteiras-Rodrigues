@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Administrativo – Ponteiras Rodrigues</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="login-layout">
+
+  <!-- Painel esquerdo -->
+  <div class="login-panel-left">
+    <div class="login-left-inner">
+      <div class="login-left-brand">
+        <div class="brand-mark" style="width:40px;height:40px;font-size:14px;">PR</div>
+        <div>
+          <div class="brand-text-name" style="font-size:15px;">Ponteiras Rodrigues</div>
+          <div class="brand-text-sub">Sistema de Chamados</div>
+        </div>
+      </div>
+
+      <h2 class="login-left-headline">Área<br><span>Administrativa</span></h2>
+      <p class="login-left-desc">Gerencie e acompanhe todas as solicitações de suporte técnico da empresa em tempo real.</p>
+
+      <div class="login-features">
+        <div class="login-feature">
+          <div class="login-feature-icon">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          Dashboard com indicadores em tempo real
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
+          </div>
+          Filtragem por status e prioridade
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </div>
+          Atualização de status e prioridade
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          Autenticação segura via JWT
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Painel direito (form) -->
+  <div class="login-panel-right">
+    <div class="login-form-wrap">
+      <h1>Entrar</h1>
+      <p class="login-sub">Acesse com suas credenciais de administrador.</p>
+
+      <div id="loginAlert" style="margin-bottom:16px; display:none;"></div>
+
+      <div class="login-fields">
+        <div class="form-group">
+          <label for="loginEmail">E-mail</label>
+          <input type="email" id="loginEmail" placeholder="admin@ponteiras.com" autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="loginSenha">Senha</label>
+          <input type="password" id="loginSenha" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <button class="btn btn-primary btn-lg" id="btnLogin" style="width:100%;">
+          Entrar na conta
+        </button>
+      </div>
+
+      <div class="login-divider">
+        <a href="/" class="login-back">
+          ← Voltar para abertura de chamados
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="/js/login.js"></script>
+</body>
+</html>

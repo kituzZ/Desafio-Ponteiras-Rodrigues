@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhe do Chamado – Ponteiras Rodrigues</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <div class="brand-mark">PR</div>
+        <div>
+          <div class="brand-text-name">Ponteiras Rodrigues</div>
+          <div class="brand-text-sub">Admin</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Menu</div>
+      <a href="/admin" class="nav-item active">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Chamados
+      </a>
+      <a href="/" target="_blank" class="nav-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Novo Chamado
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="admin-profile">
+        <div class="admin-avatar" id="avatarInitial">A</div>
+        <div>
+          <div class="admin-info-name" id="adminName" style="color:white;">Administrador</div>
+          <div class="admin-info-role">Admin</div>
+        </div>
+      </div>
+      <button class="nav-item" id="btnLogout" style="margin-top:4px; color:rgba(255,255,255,0.4);">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        Sair
+      </button>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <a href="/admin" class="btn btn-ghost btn-sm">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          Voltar
+        </a>
+        <span class="topbar-title" id="pageTitle">Detalhes do Chamado</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-danger btn-sm" id="btnExcluir">Excluir chamado</button>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- Loading -->
+      <div id="loadingState" style="text-align:center; padding:80px 24px;">
+        <div class="spinner spinner-accent" style="margin:0 auto 16px;"></div>
+        <p class="text-muted text-sm">Carregando chamado...</p>
+      </div>
+
+      <!-- Conteúdo -->
+      <div id="detailContent" style="display:none;">
+        <div class="detail-layout">
+
+          <!-- Coluna principal -->
+          <div class="detail-col">
+
+            <!-- Card principal do chamado -->
+            <div class="dcard">
+              <div class="dcard-prio-bar" id="prioBar"></div>
+              <div class="dcard-header">
+                <span>Chamado</span>
+                <span class="ticket-mono-id" id="detTicketId">#0000</span>
+              </div>
+              <div class="dcard-body">
+                <div class="dfield">
+                  <div class="dfield-label">Título</div>
+                  <div class="dfield-value title-value" id="detTitulo"></div>
+                </div>
+                <div class="dfield">
+                  <div class="dfield-label">Descrição do problema</div>
+                  <div class="dfield-value desc-value" id="detDescricao"></div>
+                </div>
+                <div class="meta-grid">
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Status</div>
+                    <div id="detStatus"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Prioridade</div>
+                    <div id="detPrioridade"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Setor</div>
+                    <div class="dfield-value" id="detSetor"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Aberto em</div>
+                    <div class="dfield-value mono-value" id="detData"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dados do solicitante -->
+            <div class="dcard">
+              <div class="dcard-header">Dados do Solicitante</div>
+              <div class="dcard-body">
+                <div class="meta-grid">
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Nome</div>
+                    <div class="dfield-value fw-700" id="detNome"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">E-mail</div>
+                    <div class="dfield-value" id="detEmail"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Telefone</div>
+                    <div class="dfield-value mono-value" id="detTelefone"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Endereço -->
+            <div class="dcard" id="cardEndereco">
+              <div class="dcard-header">Endereço</div>
+              <div class="dcard-body">
+                <div class="meta-grid">
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">CEP</div>
+                    <div class="dfield-value mono-value" id="detCep"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Logradouro</div>
+                    <div class="dfield-value" id="detRua"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Bairro</div>
+                    <div class="dfield-value" id="detBairro"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;">
+                    <div class="dfield-label">Cidade / UF</div>
+                    <div class="dfield-value" id="detCidade"></div>
+                  </div>
+                  <div class="dfield" style="margin-bottom:0;" id="detComplementoRow">
+                    <div class="dfield-label">Complemento</div>
+                    <div class="dfield-value" id="detComplemento"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Coluna lateral -->
+          <div class="detail-col">
+
+            <!-- Gerenciar -->
+            <div class="dcard">
+              <div class="dcard-header">Gerenciar Chamado</div>
+              <div class="dcard-body">
+                <div class="control-group">
+                  <div>
+                    <div class="control-label">Status</div>
+                    <select class="control-select" id="selectStatus">
+                      <option value="Aberto">Aberto</option>
+                      <option value="Em Atendimento">Em Atendimento</option>
+                      <option value="Finalizado">Finalizado</option>
+                      <option value="Cancelado">Cancelado</option>
+                    </select>
+                  </div>
+                  <div>
+                    <div class="control-label">Prioridade</div>
+                    <select class="control-select" id="selectPrioridade">
+                      <option value="Baixa">🟢 Baixa</option>
+                      <option value="Média">🟡 Média</option>
+                      <option value="Alta">🟠 Alta</option>
+                      <option value="Urgente">🔴 Urgente</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary" style="width:100%;" id="btnSalvar">
+                    Salvar alterações
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Histórico -->
+            <div class="dcard">
+              <div class="dcard-header">Histórico</div>
+              <div class="dcard-body">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot open">
+                      <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                    </div>
+                    <div>
+                      <div class="timeline-content-title">Chamado aberto</div>
+                      <div class="timeline-content-date" id="histAberto">–</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot updated">
+                      <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    </div>
+                    <div>
+                      <div class="timeline-content-title">Última atualização</div>
+                      <div class="timeline-content-date" id="histAtualizado">–</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/detalhe.js"></script>
+</body>
+</html>

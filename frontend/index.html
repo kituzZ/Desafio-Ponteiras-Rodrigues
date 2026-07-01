@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abertura de Chamado – Ponteiras Rodrigues</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="public-layout">
+
+  <header class="public-header">
+    <div class="brand">
+      <div class="brand-mark">PR</div>
+      <div>
+        <div class="brand-text-name">Ponteiras Rodrigues</div>
+        <div class="brand-text-sub">Central de Suporte</div>
+      </div>
+    </div>
+    <a href="/admin" class="header-nav-link">
+      Área Administrativa
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          Suporte Técnico
+        </div>
+        <h1>Abra um <span>Chamado</span> de<br>Suporte Técnico</h1>
+        <p class="hero-desc">Preencha as informações abaixo para registrar sua solicitação.<br>Nossa equipe entrará em contato em breve.</p>
+      </div>
+    </div>
+
+    <div class="form-wrap" id="formWrap">
+      <div id="alertGlobal" style="margin-bottom: 14px; display: none;"></div>
+
+      <form class="form-card" id="formChamado" novalidate>
+
+        <!-- Seção 1: Dados do Solicitante -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <div class="section-badge">1</div>
+            <h2>Dados do Solicitante</h2>
+          </div>
+          <div class="form-grid cols-2">
+            <div class="form-group">
+              <label for="nome">Nome completo <span class="req">*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" />
+              <span class="field-error" id="err-nome">Informe seu nome completo.</span>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com.br" autocomplete="email" />
+              <span class="field-error" id="err-email">Informe um e-mail válido.</span>
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone <span class="req">*</span></label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(47) 99999-9999" />
+              <span class="field-error" id="err-telefone">Informe seu telefone.</span>
+            </div>
+            <div class="form-group">
+              <label for="setor">Setor / Departamento <span class="req">*</span></label>
+              <input type="text" id="setor" name="setor" placeholder="Ex: Financeiro, TI, RH..." />
+              <span class="field-error" id="err-setor">Informe o setor.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 2: Detalhes do Chamado -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <div class="section-badge">2</div>
+            <h2>Detalhes do Chamado</h2>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="titulo">Título do chamado <span class="req">*</span></label>
+              <input type="text" id="titulo" name="titulo" placeholder="Resumo breve do problema" />
+              <span class="field-error" id="err-titulo">Informe o título do chamado.</span>
+            </div>
+            <div class="form-group">
+              <label for="descricao">Descrição do problema <span class="req">*</span></label>
+              <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva detalhadamente o problema: quando ocorreu, o que estava fazendo, mensagens de erro..."></textarea>
+              <span class="field-error" id="err-descricao">Descreva o problema encontrado.</span>
+            </div>
+            <div class="form-group" style="max-width: 220px;">
+              <label for="prioridade">Prioridade <span class="req">*</span></label>
+              <select id="prioridade" name="prioridade">
+                <option value="">Selecione...</option>
+                <option value="Baixa">🟢 Baixa — pode aguardar</option>
+                <option value="Média">🟡 Média — impacto moderado</option>
+                <option value="Alta">🟠 Alta — urgência relevante</option>
+                <option value="Urgente">🔴 Urgente — parado / crítico</option>
+              </select>
+              <span class="field-error" id="err-prioridade">Selecione a prioridade.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 3: Endereço -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <div class="section-badge">3</div>
+            <h2>Endereço</h2>
+          </div>
+          <div class="form-grid">
+            <div class="cep-row">
+              <div class="form-group">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" />
+              </div>
+              <button type="button" class="btn-cep" id="btnBuscarCep">Buscar endereço</button>
+            </div>
+
+            <div id="cepStatus" style="display:none;"></div>
+
+            <div class="form-grid cols-3" id="enderecoFields" style="display:none;">
+              <div class="form-group span-2">
+                <label for="rua">Rua / Logradouro</label>
+                <input type="text" id="rua" name="rua" disabled />
+              </div>
+              <div class="form-group">
+                <label for="numero">Número</label>
+                <input type="text" id="numero" name="numero" placeholder="Ex: 123" />
+              </div>
+              <div class="form-group">
+                <label for="complemento">Complemento</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Sala, andar..." />
+              </div>
+              <div class="form-group">
+                <label for="bairro">Bairro</label>
+                <input type="text" id="bairro" name="bairro" disabled />
+              </div>
+              <div class="form-group">
+                <label for="cidade">Cidade</label>
+                <input type="text" id="cidade" name="cidade" disabled />
+              </div>
+              <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" id="estado" name="estado" disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer do form -->
+        <div class="form-footer">
+          <span class="form-footer-note">Campos marcados com <span style="color:var(--p-urgente)">*</span> são obrigatórios.</span>
+          <div class="footer-actions">
+            <button type="button" class="btn btn-ghost" onclick="resetForm()">Limpar</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="btnSubmit">
+              Registrar chamado
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="public-footer">
+    <span>© 2026 Ponteiras Rodrigues · Sistema de Gerenciamento de Chamados</span>
+    <span>Suporte Técnico</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/mask.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – Ponteiras Rodrigues</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <div class="brand-mark">PR</div>
+        <div>
+          <div class="brand-text-name">Ponteiras Rodrigues</div>
+          <div class="brand-text-sub">Admin</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-label">Menu</div>
+      <a href="/admin" class="nav-item active">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Chamados
+      </a>
+      <a href="/" target="_blank" class="nav-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Novo Chamado
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="admin-profile">
+        <div class="admin-avatar" id="avatarInitial">A</div>
+        <div>
+          <div class="admin-info-name" id="adminName">Administrador</div>
+          <div class="admin-info-role">Admin</div>
+        </div>
+      </div>
+      <button class="nav-item" id="btnLogout" style="margin-top:4px; color:rgba(255,255,255,0.4);">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        Sair
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <span class="topbar-title">Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-ghost btn-sm" id="btnRefresh">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Atualizar
+        </button>
+        <a href="/" target="_blank" class="btn btn-primary btn-sm">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+          Novo Chamado
+        </a>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-accent blue"></div>
+          <div class="stat-label">Total de Chamados</div>
+          <div class="stat-value" id="statTotal">–</div>
+          <div class="stat-sub">registros no banco</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-accent sky"></div>
+          <div class="stat-label">Abertos</div>
+          <div class="stat-value" id="statAbertos" style="color:var(--s-aberto);">–</div>
+          <div class="stat-sub">aguardando atendimento</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-accent amber"></div>
+          <div class="stat-label">Em Atendimento</div>
+          <div class="stat-value" id="statAtendimento" style="color:var(--s-atendimento);">–</div>
+          <div class="stat-sub">em andamento agora</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-accent red"></div>
+          <div class="stat-label">Urgentes</div>
+          <div class="stat-value" id="statUrgentes" style="color:var(--p-urgente);">–</div>
+          <div class="stat-sub">prioridade crítica</div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <div class="table-card-title">Chamados</div>
+          <div class="filters">
+            <input type="text" class="filter-input" id="filterBusca" placeholder="Buscar nome, título..." />
+            <select class="filter-select" id="filterStatus">
+              <option value="">Todos os status</option>
+              <option value="Aberto">Aberto</option>
+              <option value="Em Atendimento">Em Atendimento</option>
+              <option value="Finalizado">Finalizado</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+            <select class="filter-select" id="filterPrioridade">
+              <option value="">Todas as prioridades</option>
+              <option value="Baixa">Baixa</option>
+              <option value="Média">Média</option>
+              <option value="Alta">Alta</option>
+              <option value="Urgente">Urgente</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Solicitante</th>
+                <th>Título</th>
+                <th>Setor</th>
+                <th>Prioridade</th>
+                <th>Status</th>
+                <th>Aberto em</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaChamados">
+              <tr>
+                <td colspan="7">
+                  <div class="empty-state">
+                    <div class="spinner spinner-accent" style="margin:0 auto 14px;"></div>
+                    <p class="text-muted">Carregando chamados...</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/admin.js"></script>
+</body>
+</html>
